@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARMOR 华芒光电 — 来访导航</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans SC', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    min-height: 100vh;
+  }
+
+  /* ── Hero Banner ── */
+  .hero {
+    background: linear-gradient(135deg, #0a1628 0%, #16213e 40%, #1a3a5c 100%);
+    padding: 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,200,150,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 20%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(0,150,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 12px;
+  }
+  .hero-logo {
+    width: 56px; height: 56px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+  }
+  .hero-brand {
+    color: #ffffff;
+  }
+  .hero-brand h1 {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    line-height: 1.2;
+  }
+  .hero-brand .subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-top: 2px;
+  }
+
+  .hero-title {
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 400;
+    opacity: 0.7;
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+
+  /* ── Address Bar ── */
+  .address-bar {
+    background: linear-gradient(90deg, #00c896, #00b4d8);
+    padding: 18px 56px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .address-bar .icon {
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .address-bar .addr-text {
+    line-height: 1.6;
+  }
+  .address-bar .addr-text strong {
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  /* ── Section ── */
+  .section {
+    padding: 40px 56px;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #16213e;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, #00c896, #00b4d8);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+    margin: 0 56px;
+  }
+
+  /* ── Map Section ── */
+  .map-container {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    border: 1px solid #e8e8e8;
+    margin-bottom: 20px;
+  }
+  .map-container img {
+    width: 100%;
+    display: block;
+  }
+
+  /* ── Route Steps ── */
+  .route-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .route-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 20px;
+    background: #f8fafb;
+    border-radius: 10px;
+    border-left: 4px solid #00c896;
+    transition: transform 0.2s;
+  }
+  .route-step:hover {
+    transform: translateX(4px);
+  }
+
+  .step-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, #00c896, #00b4d8);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-content {
+    flex: 1;
+  }
+  .step-content h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #16213e;
+    margin-bottom: 4px;
+  }
+  .step-content p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+  }
+  .step-content .highlight {
+    color: #00a67e;
+    font-weight: 600;
+  }
+
+  /* ── Photo Cards ── */
+  .photo-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 8px;
+  }
+
+  .photo-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border: 1px solid #e8e8e8;
+    background: #fff;
+  }
+  .photo-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-card .caption {
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.5;
+    background: #fafbfc;
+  }
+  .photo-card .caption strong {
+    color: #16213e;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .photo-card .caption .tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #00c896, #00b4d8);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 6px;
+  }
+
+  /* ── Tips ── */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .tip-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px;
+    background: #f8fafb;
+    border-radius: 10px;
+    border: 1px solid #eef0f2;
+  }
+  .tip-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .tip-text h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #16213e;
+    margin-bottom: 3px;
+  }
+  .tip-text p {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    padding: 28px 56px;
+    background: #f5f7fa;
+    border-top: 1px solid #e8e8e8;
+    text-align: center;
+    color: #888;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .footer .contact-row {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #555;
+  }
+  .footer .contact-row span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ── Print / Screenshot Optimization ── */
+  @media print {
+    .page { max-width: 100%; }
+    .hero { padding: 32px 40px; }
+    .section { padding: 28px 40px; }
+    .address-bar { padding: 14px 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ════ Hero ════ -->
+  <div class="hero">
+    <div class="hero-top">
+      <img class="hero-logo" src="armorlighting-logo.png" alt="ARMOR Logo">
+      <div class="hero-brand">
+        <h1>ARMOR 华芒光电</h1>
+        <div class="subtitle">HUAMANG OPTOELECTRONICS</div>
+      </div>
+    </div>
+    <div class="hero-title">来访导航指南 &nbsp; Visitor Navigation Guide</div>
+  </div>
+
+  <!-- ════ Address ════ -->
+  <div class="address-bar">
+    <span class="icon">📍</span>
+    <div class="addr-text">
+      <strong>广州市番禺区大石街道会江宝江路 &nbsp;深蓝工业园 &nbsp;十栋302</strong><br>
+      <span style="opacity:0.85; font-size:13px;">联系电话：13672469002</span>
+    </div>
+  </div>
+
+  <!-- ════ Section 1: Map ════ -->
+  <div class="section">
+    <div class="section-title">
+      <span class="num">1</span> 园区地图与路线
+    </div>
+    <div class="map-container">
+      <img src="guide-map.png" alt="深蓝工业园导航地图">
+    </div>
+
+    <!-- Overlay annotation legend -->
+    <div style="background: linear-gradient(135deg, #f0faf7, #f0f8ff); border-radius: 10px; padding: 18px 22px; border: 1px solid #d4eee5; margin-bottom: 16px;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <span style="font-size: 22px;">🟢</span>
+        <span style="font-size: 14px; font-weight: 600; color: #16213e;">路线关键标识</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 13px; color: #444;">
+        <div>📌 <strong>起点</strong>：宝江路园区入口（西门）</div>
+        <div>🏢 <strong>终点</strong>：10号楼 302室</div>
+        <div>🅿️ <strong>停车</strong>：入口右侧停放区</div>
+        <div>🚗 <strong>路线</strong>：沿主干道直行约 200m</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════ Section 2: Step-by-Step ════ -->
+  <div class="section">
+    <div class="section-title">
+      <span class="num">2</span> 分步导航
+    </div>
+    <div class="route-steps">
+
+      <div class="route-step">
+        <div class="step-badge">1</div>
+        <div class="step-content">
+          <h3>🚗 沿宝江路到达园区入口</h3>
+          <p>导航搜索"<span class="highlight">深蓝工业园</span>"，到达宝江路后，可见右侧有蓝色园区信息牌，入口处设有<span class="highlight">道闸和岗亭</span>。</p>
+          <p style="font-size:12px; color:#888; margin-top:4px;">⏱ 车程导航时长视出发地而定</p>
+        </div>
+      </div>
+
+      <div class="route-step">
+        <div class="step-badge">2</div>
+        <div class="step-content">
+          <h3>🚪 进入园区（西门/道闸处）</h3>
+          <p>经道闸进入园区，如需登记请在岗亭处办理。入口左右两侧为<span class="highlight">白色外墙、蓝色装饰线条</span>的厂房楼栋。</p>
+          <p style="font-size:12px; color:#888; margin-top:4px;">⏱ 约 1 分钟</p>
+        </div>
+      </div>
+
+      <div class="route-step">
+        <div class="step-badge">3</div>
+        <div class="step-content">
+          <h3>➡️ 沿主干道直行约 200 米</h3>
+          <p>进入后沿园区主干道<span class="highlight">向前直行</span>，经过两侧厂房区域。道路两侧有绿化树木。</p>
+          <p style="font-size:12px; color:#888; margin-top:4px;">⏱ 步行约 2-3 分钟</p>
+        </div>
+      </div>
+
+      <div class="route-step">
+        <div class="step-badge">4</div>
+        <div class="step-content">
+          <h3>🏢 到达 10 号楼</h3>
+          <p>找到<span class="highlight">10号楼</span>，建筑外观为白色外墙配蓝色线条。楼下可见<span class="highlight">ARMOR</span>品牌标识（绿蓝皇冠 Logo），门牌号 <strong>10#302</strong>。</p>
+          <p style="font-size:12px; color:#888; margin-top:4px;">⏱ 已到达</p>
+        </div>
+      </div>
+
+      <div class="route-step">
+        <div class="step-badge">5</div>
+        <div class="step-content">
+          <h3>✅ 到达公司</h3>
+          <p>上楼至 <span class="highlight">302 室</span>，即为 ARMOR 华芒光电办公室。请提前与我方对接人确认到达时间。</p>
+          <p style="font-size:12px; color:#888; margin-top:4px;">⏱ 步行约 1 分钟</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════ Section 3: Photo Guide ════ -->
+  <div class="section">
+    <div class="section-title">
+      <span class="num">3</span> 实景参考
+    </div>
+    <div class="photo-row">
+      <div class="photo-card">
+        <img src="community-entrance.png" alt="园区入口">
+        <div class="caption">
+          <strong>📍 园区入口</strong>
+          进入道闸后即可看到蓝色信息牌，确认到达"深蓝工业园"。
+          <div class="tag">起点 — 进入后直行</div>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="company-downstairs.jpg" alt="公司楼下">
+        <div class="caption">
+          <strong>📍 10号楼 · ARMOR 华芒光电</strong>
+          看到绿蓝皇冠 Logo 和 ARMOR 标识，即为到达。门牌号 <strong>10#302</strong>。
+          <div class="tag">终点 — 请上楼至302室</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════ Section 4: Tips ════ -->
+  <div class="section">
+    <div class="section-title">
+      <span class="num">4</span> 来访须知
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">🅿️</div>
+        <div class="tip-text">
+          <h4>停车指引</h4>
+          <p>进入道闸后，右侧区域可停放车辆。园区内有非机动车停放区。如车位紧张可沿内道路寻找空位。</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📋</div>
+        <div class="tip-text">
+          <h4>入园登记</h4>
+          <p>部分时段岗亭有人值守，需登记来访信息。建议提前告知对接人来访时间，我方可在门口接应。</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">⏰</div>
+        <div class="tip-text">
+          <h4>建议提前联系</h4>
+          <p>工作日 9:00-18:00 为办公时间。建议到达前 10 分钟电话联系，确保有人接待。</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🧭</div>
+        <div class="tip-text">
+          <h4>导航搜索关键词</h4>
+          <p>高德/百度地图搜索"<strong>深蓝工业园</strong>"，定位宝江路入口即可到达。导航请定位至"西门"。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ Footer ════ -->
+  <div class="footer">
+    <div class="contact-row">
+      <span>📍 广州市番禺区大石街道会江宝江路 深蓝工业园 十栋302</span>
+      <span>📞 13672469002</span>
+    </div>
+    <div>华芒光电 &nbsp;|&nbsp; ARMOR &nbsp;|&nbsp; www.armorlighting.com</div>
+  </div>
+
+</div>
+</body>
+</html>

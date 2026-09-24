@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARMOR Huamang Optoelectronics — Visitor Navigation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+    background: #f0f2f5;
+    color: #1a1a2e;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #ffffff;
+    min-height: 100vh;
+  }
+
+  /* ── Hero Banner ── */
+  .hero {
+    background: linear-gradient(135deg, #0a1628 0%, #16213e 40%, #1a3a5c 100%);
+    padding: 48px 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,200,150,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 20%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(0,150,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 12px;
+  }
+  .hero-logo {
+    width: 56px; height: 56px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+  }
+  .hero-brand {
+    color: #ffffff;
+  }
+  .hero-brand h1 {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    line-height: 1.2;
+  }
+  .hero-brand .subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-top: 2px;
+  }
+
+  .hero-title {
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 400;
+    opacity: 0.7;
+    margin-top: 8px;
+    letter-spacing: 1px;
+  }
+
+  /* ── Address Bar ── */
+  .address-bar {
+    background: linear-gradient(90deg, #00c896, #00b4d8);
+    padding: 18px 56px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .address-bar .icon {
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .address-bar .addr-text {
+    line-height: 1.6;
+  }
+  .address-bar .addr-text strong {
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  /* ── Section ── */
+  .section {
+    padding: 40px 56px;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #16213e;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, #00c896, #00b4d8);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+    margin: 0 56px;
+  }
+
+  /* ── Map Section ── */
+  .map-container {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    border: 1px solid #e8e8e8;
+    margin-bottom: 20px;
+  }
+  .map-container img {
+    width: 100%;
+    display: block;
+  }
+
+  /* ── Route Steps ── */
+  .route-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .route-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 20px;
+    background: #f8fafb;
+    border-radius: 10px;
+    border-left: 4px solid #00c896;
+    transition: transform 0.2s;
+  }
+  .route-step:hover {
+    transform: translateX(4px);
+  }
+
+  .step-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, #00c896, #00b4d8);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step-content {
+    flex: 1;
+  }
+  .step-content h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #16213e;
+    margin-bottom: 4px;
+  }
+  .step-content p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+  }
+  .step-content .highlight {
+    color: #00a67e;
+    font-weight: 600;
+  }
+
+  /* ── Photo Cards ── */
+  .photo-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 8px;
+  }
+
+  .photo-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border: 1px solid #e8e8e8;
+    background: #fff;
+  }
+  .photo-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+  .photo-card .caption {
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.5;
+    background: #fafbfc;
+  }
+  .photo-card .caption strong {
+    color: #16213e;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .photo-card .caption .tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #00c896, #00b4d8);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 6px;
+  }
+
+  /* ── Tips ── */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .tip-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px;
+    background: #f8fafb;
+    border-radius: 10px;
+    border: 1px solid #eef0f2;
+  }
+  .tip-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .tip-text h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #16213e;
+    margin-bottom: 3px;
+  }
+  .tip-text p {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    padding: 28px 56px;
+    background: #f5f7fa;
+    border-top: 1px solid #e8e8e8;
+    text-align: center;
+    color: #888;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .footer .contact-row {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #555;
+  }
+  .footer .contact-row span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* ── Print / Screenshot Optimization ── */
+  @media print {
+    .page { max-width: 100%; }
+    .hero { padding: 32px 40px; }
+    .section { padding: 28px 40px; }
+    .address-bar { padding: 14px 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ════ Hero ════ -->
+  <div class="hero">
+    <div class="hero-top">
+      <img class="hero-logo" src="armorlighting-logo.png" alt="ARMOR Logo">
+      <div class="hero-brand">
+        <h1>ARMOR</h1>
+        <div class="subtitle">HUAMANG OPTOELECTRONICS</div>
+      </div>
+    </div>
+    <div class="hero-title">Visitor Navigation Guide</div>
+  </div>
+
+  <!-- ════ Address ════ -->
+  <div class="address-bar">
+    <span class="icon">📍</span>
+    <div class="addr-text">
+      <strong>Room 302, Building 10, Shenlan Industrial Park, Baojiang Road, Huijiang, Dashi Street, Panyu District, Guangzhou</strong><br>
+      <span style="opacity:0.85; font-size:13px;">Phone: +86 136 7246 9002</span>
+    </div>
+  </div>
+
+  <!-- ════ Section 1: Map ════ -->
+  <div class="section">
+    <div class="section-title">
+      <span class="num">1</span> Park Map &amp; Route
+    </div>
+    <div class="map-container">
+      <img src="guide-map-en.png" alt="Shenlan Industrial Park Navigation Map">
+    </div>
+
+    <!-- Overlay annotation legend -->
+    <div style="background: linear-gradient(135deg, #f0faf7, #f0f8ff); border-radius: 10px; padding: 18px 22px; border: 1px solid #d4eee5; margin-bottom: 16px;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <span style="font-size: 22px;">🟢</span>
+        <span style="font-size: 14px; font-weight: 600; color: #16213e;">Route Key Points</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 13px; color: #444;">
+        <div>📌 <strong>Start</strong>: Park entrance on Baojiang Road (West Gate)</div>
+        <div>🏢 <strong>End</strong>: Building 10, Room 302</div>
+        <div>🅿️ <strong>Parking</strong>: Right side after the entrance barrier</div>
+        <div>🚗 <strong>Route</strong>: ~200m straight along the main road</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════ Section 2: Step-by-Step ════ -->
+  <div class="section">
+    <div class="section-title">
+      <span class="num">2</span> Step-by-Step Directions
+    </div>
+    <div class="route-steps">
+
+      <div class="route-step">
+        <div class="step-badge">1</div>
+        <div class="step-content">
+          <h3>🚗 Drive to the Park Entrance on Baojiang Road</h3>
+          <p>Search "<span class="highlight">Shenlan Industrial Park</span>" in your navigation app. As you arrive on Baojiang Road, look for the blue park information board on the right. The entrance has a <span class="highlight">boom barrier and guard booth</span>.</p>
+          <p style="font-size:12px; color:#888; margin-top:4px;">⏱ Travel time depends on your starting point</p>
+        </div>
+      </div>
+
+      <div class="route-step">
+        <div class="step-badge">2</div>
+        <div class="step-content">
+          <h3>🚪 Enter the Park (West Gate / Barrier)</h3>
+          <p>Pass through the boom barrier into the park. If registration is required, please check in at the guard booth. Buildings on both sides have <span class="highlight">white facades with blue accent lines</span>.</p>
+          <p style="font-size:12px; color:#888; margin-top:4px;">⏱ ~1 minute</p>
+        </div>
+      </div>
+
+      <div class="route-step">
+        <div class="step-badge">3</div>
+        <div class="step-content">
+          <h3>➡️ Continue Straight Along the Main Road (~200m)</h3>
+          <p>After entering, <span class="highlight">head straight</span> along the main road. You will pass factory buildings on both sides, with greenery lining the road.</p>
+          <p style="font-size:12px; color:#888; margin-top:4px;">⏱ ~2–3 minutes on foot</p>
+        </div>
+      </div>
+
+      <div class="route-step">
+        <div class="step-badge">4</div>
+        <div class="step-content">
+          <h3>🏢 Arrive at Building 10</h3>
+          <p>Look for <span class="highlight">Building 10</span> — a white building with blue accent lines. The <span class="highlight">ARMOR</span> logo (blue-green crown icon) is displayed at the ground-floor entrance. Suite number: <strong>10#302</strong>.</p>
+          <p style="font-size:12px; color:#888; margin-top:4px;">⏱ You've arrived</p>
+        </div>
+      </div>
+
+      <div class="route-step">
+        <div class="step-badge">5</div>
+        <div class="step-content">
+          <h3>✅ Welcome to ARMOR</h3>
+          <p>Go upstairs to <span class="highlight">Room 302</span> — this is the ARMOR Huamang Optoelectronics office. Please confirm your arrival time with your contact person in advance.</p>
+          <p style="font-size:12px; color:#888; margin-top:4px;">⏱ ~1 minute on foot</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════ Section 3: Photo Guide ════ -->
+  <div class="section">
+    <div class="section-title">
+      <span class="num">3</span> Real-World Reference
+    </div>
+    <div class="photo-row">
+      <div class="photo-card">
+        <img src="community-entrance.png" alt="Park Entrance">
+        <div class="caption">
+          <strong>📍 Park Entrance (West Gate)</strong>
+          After passing the barrier, look for the blue information board confirming you've arrived at "Shenlan Industrial Park."
+          <div class="tag">Start — Head straight after entry</div>
+        </div>
+      </div>
+      <div class="photo-card">
+        <img src="company-downstairs.jpg" alt="Building 10 Entrance">
+        <div class="caption">
+          <strong>📍 Building 10 · ARMOR</strong>
+          Look for the blue-green crown logo and "ARMOR" signage. Suite number: <strong>10#302</strong>.
+          <div class="tag">End — Go upstairs to Room 302</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ════ Section 4: Tips ════ -->
+  <div class="section">
+    <div class="section-title">
+      <span class="num">4</span> Visitor Notes
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-icon">🅿️</div>
+        <div class="tip-text">
+          <h4>Parking</h4>
+          <p>After passing the barrier, parking is available on the right side. If full, continue along the internal roads for additional spots.</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">📋</div>
+        <div class="tip-text">
+          <h4>Park Registration</h4>
+          <p>A guard may be on duty and require visitor registration. We recommend informing your contact person of your arrival time so we can meet you at the gate.</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">⏰</div>
+        <div class="tip-text">
+          <h4>Office Hours</h4>
+          <p>Weekdays 9:00 AM – 6:00 PM. Please call your contact person 10 minutes before arrival to ensure someone is available to welcome you.</p>
+        </div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-icon">🧭</div>
+        <div class="tip-text">
+          <h4>Navigation Tip</h4>
+          <p>Search "<strong>Shenlan Industrial Park</strong>" (深蓝工业园) in Gaode Maps or Baidu Maps, and set the destination to the <strong>West Gate</strong> on Baojiang Road.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════ Footer ════ -->
+  <div class="footer">
+    <div class="contact-row">
+      <span>📍 Room 302, Bldg 10, Shenlan Industrial Park, Baojiang Rd, Panyu, Guangzhou</span>
+      <span>📞 +86 136 7246 9002</span>
+    </div>
+    <div>ARMOR &nbsp;|&nbsp; Huamang Optoelectronics &nbsp;|&nbsp; www.armorlighting.com</div>
+  </div>
+
+</div>
+</body>
+</html>
